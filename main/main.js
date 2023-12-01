@@ -1,7 +1,17 @@
 let elList = document.querySelector('.list')
 
+function rendertime(datetime){
+    let date = new Date(datetime)
+    let day = String(date.getDate()).padStart(2, 0)
+    let month = String(date.getMonth()+1).padStart(2, 0)
+    let year = date.getFullYear()
+
+    return day + '.'+ month + '.' + year
+}
+
 function render(_films){
     for (let i = 0; i<_films.length; i++){
+
         //Tegs
         newLi = document.createElement('li')
         newImg = document.createElement('img')
@@ -23,10 +33,9 @@ function render(_films){
         //TextContent
         newHeading.textContent = _films[i].title;
         newText.textContent = _films[i].overview;
-        newTime.textContent = _films[i].release_date;
+        newTime.textContent = rendertime(_films[i].release_date)
 
         //AppendChild
-
         newLi.appendChild(newImg)
         newLi.appendChild(newHeading)
         newLi.appendChild(newText)
